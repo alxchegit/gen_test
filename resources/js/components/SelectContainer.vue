@@ -4,9 +4,7 @@
             <option v-for="item in amo_entities"
                      :key="item.id"
                      :value="item.id">
-                <div class="selected-entity" v-if="selected_entity === item.id">v</div>
                 <div class="entity_inner">{{ item.name }}</div>
-
             </option>
         </select>
     </div>
