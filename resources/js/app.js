@@ -1,9 +1,11 @@
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from "vue";
+import store from "./store";
 
-Vue.component('index', require('./components/index'));
+Vue.component('front', require('./components/Front.vue').default);
 
 const app = new Vue({
     el: '#app',
+    store: store,
 });
