@@ -82,6 +82,8 @@ export default {
     display: flex;
     align-content: center;
     justify-content: center;
+    align-items: center;
+    height: 100px;
 }
 .button-input {
     cursor: pointer;

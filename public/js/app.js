@@ -2288,6 +2288,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SelectContainer",
   data: function data() {
@@ -2296,19 +2304,44 @@ __webpack_require__.r(__webpack_exports__);
         id: 0,
         name: 'Не выбрано'
       },
-      selected_entity: 0
+      selected_entity: 0,
+      listState: !1
     };
+  },
+  methods: {
+    selectAmoEntity: function selectAmoEntity(item) {
+      this.selected_entity = item.id;
+      this.closeEntityList();
+    },
+    openEntityList: function openEntityList() {
+      this.listState = 1;
+    },
+    closeEntityList: function closeEntityList() {
+      this.listState = !1;
+    }
   },
   computed: {
     amo_entities: function amo_entities() {
       var ent = this.$store.getters['GET_AMO_ENTITIES'];
       ent.unshift(this.ext_option);
       return ent;
+    },
+    selected_entity_name: function selected_entity_name() {
+      var _this = this;
+
+      var ent = window._.find(this.amo_entities, function (enty) {
+        return enty.id === _this.selected_entity;
+      });
+
+      if (ent) {
+        return ent.name;
+      }
+
+      return 'Ошибка';
     }
   },
   watch: {
     selected_entity: function selected_entity(val) {
-      console.log('selected', val);
       this.$store.dispatch('SET_SELECTED_ENTITY', val);
     }
   }
@@ -2450,7 +2483,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.button-container[data-v-a6920b58]\n{\n    display: flex;\n    align-content: center;\n    justify-content: center;\n}\n.button-input[data-v-a6920b58] {\n    cursor: pointer;\n    min-height: 36px;\n    padding: 10px;\n    border: 1px solid #e6e6e6;\n    background: #f8f8f8;\n    color: #1b1b1b;\n    font-weight: 600;\n    border-radius: 3px;\n    vertical-align: middle;\n}\n.button-input.button-active[data-v-a6920b58],\n.button-input_loading[data-v-a6920b58]\n{\n    cursor: pointer;\n    border: 1px solid #4077d6;\n    background: #4c8bf7;\n    color: #fff;\n}\n.button-input-inner[data-v-a6920b58] {\n    display: inline-flex;\n    align-items: center;\n    position: relative;\n}\n.button-input__spinner__icon[data-v-a6920b58] {\n    position: absolute;\n    top: -1px;\n    left: -2px;\n}\n.spinner-icon[data-v-a6920b58] {\n    display: block;\n    width: 16px;\n    height: 16px;\n    border: solid 2px transparent;\n    border-top-color: #d5e3ea;\n    border-left-color: #d5e3ea;\n    border-radius: 100%;\n    -webkit-animation: nprogress-spinner-data-v-a6920b58 900ms linear infinite;\n    animation: nprogress-spinner-data-v-a6920b58 900ms linear infinite;\n}\n.button-input__spinner[data-v-a6920b58] {\n    position: relative;\n    height: 16px;\n    width: 14px;\n}\n@-webkit-keyframes nprogress-spinner-data-v-a6920b58 {\n0% {\n        transform: rotate(\n            0deg);\n}\n100% {\n        transform: rotate(\n            360deg);\n}\n}\n@keyframes nprogress-spinner-data-v-a6920b58 {\n0% {\n        transform: rotate(\n            0deg);\n}\n100% {\n        transform: rotate(\n            360deg);\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.button-container[data-v-a6920b58]\n{\n    display: flex;\n    align-content: center;\n    justify-content: center;\n    align-items: center;\n    height: 100px;\n}\n.button-input[data-v-a6920b58] {\n    cursor: pointer;\n    min-height: 36px;\n    padding: 10px;\n    border: 1px solid #e6e6e6;\n    background: #f8f8f8;\n    color: #1b1b1b;\n    font-weight: 600;\n    border-radius: 3px;\n    vertical-align: middle;\n}\n.button-input.button-active[data-v-a6920b58],\n.button-input_loading[data-v-a6920b58]\n{\n    cursor: pointer;\n    border: 1px solid #4077d6;\n    background: #4c8bf7;\n    color: #fff;\n}\n.button-input-inner[data-v-a6920b58] {\n    display: inline-flex;\n    align-items: center;\n    position: relative;\n}\n.button-input__spinner__icon[data-v-a6920b58] {\n    position: absolute;\n    top: -1px;\n    left: -2px;\n}\n.spinner-icon[data-v-a6920b58] {\n    display: block;\n    width: 16px;\n    height: 16px;\n    border: solid 2px transparent;\n    border-top-color: #d5e3ea;\n    border-left-color: #d5e3ea;\n    border-radius: 100%;\n    -webkit-animation: nprogress-spinner-data-v-a6920b58 900ms linear infinite;\n    animation: nprogress-spinner-data-v-a6920b58 900ms linear infinite;\n}\n.button-input__spinner[data-v-a6920b58] {\n    position: relative;\n    height: 16px;\n    width: 14px;\n}\n@-webkit-keyframes nprogress-spinner-data-v-a6920b58 {\n0% {\n        transform: rotate(\n            0deg);\n}\n100% {\n        transform: rotate(\n            360deg);\n}\n}\n@keyframes nprogress-spinner-data-v-a6920b58 {\n0% {\n        transform: rotate(\n            0deg);\n}\n100% {\n        transform: rotate(\n            360deg);\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2498,7 +2531,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.select-container[data-v-63f824ca] {\n    display: flex;\n    align-content: center;\n    justify-content: center;\n    align-items: center;\n    min-height: 100px;\n}\nselect[data-v-63f824ca] {\n    border: 1px solid #d4d5d8;\n    border-bottom-width: 2px;\n    border-radius: 3px;\n    height: 36px;\n    width: 190px;\n    padding-left: 10px;\n    outline: 0;\n    background: linear-gradient(to bottom,#fcfcfc 0%,#f8f8f9 100%);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.select-container[data-v-63f824ca] {\n    display: flex;\n    align-content: center;\n    justify-content: center;\n    align-items: center;\n    min-height: 100px;\n}\n.select-holder[data-v-63f824ca] {\n    z-index: 10;\n    position: relative;\n}\n.select-list[data-v-63f824ca] {\n    position: absolute;\n    z-index: 20;\n    top: 0;\n    background: white;\n    width: 100%;\n    box-sizing: border-box;\n    border: 1px solid #d4d5d8;\n}\n.select-list ul[data-v-63f824ca] {\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.select-input__list-item[data-v-63f824ca] {\n    position: relative;\n    padding: 5px 0 5px 30px;\n}\n.select-input__list-item[data-v-63f824ca]:hover,\n.select-input__list-item.active-item[data-v-63f824ca]\n{\n    background-color: #dedede;\n}\n.select-input[data-v-63f824ca] {\n    width: 200px;\n}\n.select-input input[data-v-63f824ca] {\n    border: 1px solid #d4d5d8;\n    border-bottom-width: 2px;\n    border-radius: 3px;\n    height: 36px;\n    width: 100%;\n    padding-left: 10px;\n    outline: 0;\n    background: linear-gradient(to bottom,#fcfcfc 0%,#f8f8f9 100%);\n}\n.select-input[data-v-63f824ca]:after\n{\n    content: \"\";\n    position: absolute;\n    top: calc(50% - 5px);\n    width: 6px;\n    height: 6px;\n    border-bottom: 1px solid #454545;\n    border-right: 1px solid #454545;\n    transform: rotate(\n        45deg);\n    margin-left: 7px;\n    right: 12px;\n    z-index: 10;\n}\nspan.item-check[data-v-63f824ca] {\n    position: absolute;\n    top: 12px;\n    left: 12px;\n    width: 7px;\n    height: 7px;\n    border-bottom: 1px solid #454545;\n    border-right: 1px solid #454545;\n    transform: rotate(\n        45deg);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -20963,47 +20996,85 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "select-container" }, [
-    _c(
-      "select",
-      {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.selected_entity,
-            expression: "selected_entity",
+    _c("div", { staticClass: "select-holder" }, [
+      _c("div", { staticClass: "select-input" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_entity_name,
+              expression: "selected_entity_name",
+            },
+          ],
+          attrs: { type: "text", readonly: "" },
+          domProps: { value: _vm.selected_entity_name },
+          on: {
+            click: _vm.openEntityList,
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.selected_entity_name = $event.target.value
+            },
           },
-        ],
-        attrs: { name: "entity" },
-        on: {
-          change: function ($event) {
-            var $$selectedVal = Array.prototype.filter
-              .call($event.target.options, function (o) {
-                return o.selected
-              })
-              .map(function (o) {
-                var val = "_value" in o ? o._value : o.value
-                return val
-              })
-            _vm.selected_entity = $event.target.multiple
-              ? $$selectedVal
-              : $$selectedVal[0]
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected_entity,
+              expression: "selected_entity",
+            },
+          ],
+          attrs: { type: "hidden" },
+          domProps: { value: _vm.selected_entity },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.selected_entity = $event.target.value
+            },
           },
-        },
-      },
-      _vm._l(_vm.amo_entities, function (item) {
-        return _c("option", { key: item.id, domProps: { value: item.id } }, [
-          _vm.selected_entity === item.id
-            ? _c("div", { staticClass: "selected-entity" }, [_vm._v("v")])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "entity_inner" }, [
-            _vm._v(_vm._s(item.name)),
-          ]),
-        ])
-      }),
-      0
-    ),
+        }),
+      ]),
+      _vm._v(" "),
+      _vm.listState
+        ? _c("div", { staticClass: "select-list" }, [
+            _c(
+              "ul",
+              _vm._l(_vm.amo_entities, function (item, index) {
+                return _c(
+                  "li",
+                  {
+                    key: index,
+                    staticClass: "select-input__list-item",
+                    class: { "active-item": item.id === _vm.selected_entity },
+                    on: {
+                      click: function ($event) {
+                        return _vm.selectAmoEntity(item)
+                      },
+                    },
+                  },
+                  [
+                    item.id === _vm.selected_entity
+                      ? _c("span", { staticClass: "item-check" })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "list-item_text" }, [
+                      _vm._v(_vm._s(item.name)),
+                    ]),
+                  ]
+                )
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+    ]),
   ])
 }
 var staticRenderFns = []
